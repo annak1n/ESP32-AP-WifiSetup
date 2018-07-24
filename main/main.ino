@@ -100,7 +100,7 @@ void generateHtmlLoginForm (WiFiClient client) {
   client.println("<label>SSID:</label>");
   client.println("<input name='ssid' length=64 type='text'/><br/><br/>");
 
-  client.println("<label>PASS:</label>");
+  client.println("<label>Password:</label>");
   client.println("<input name='password' length=64 type='password'/><br/><br/>");
 
   client.println("<input type='submit'/>");
