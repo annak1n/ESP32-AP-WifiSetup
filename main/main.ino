@@ -95,7 +95,7 @@ void generateHtmlLoginForm (WiFiClient client) {
   client.println("<!DOCTYPE HTML>");
   client.println("<html>");
   client.println("<body style='with: 100%;'>");
-  client.println("<form method='post' action='setting' style='margin: 50px auto; width: 256px;'>");
+  client.println("<form method='post' action='/' style='margin: 50px auto; width: 256px;'>");
 
   client.println("<label>SSID:</label>");
   client.println("<input name='ssid' length=64 type='text'/><br/><br/>");
