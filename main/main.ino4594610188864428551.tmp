@@ -9,13 +9,9 @@ String wifiPasswd;
 int status = WL_IDLE_STATUS;
 int wifiConnectCount = 0;
 
-
 WiFiServer server(80);
 
 void setup() {
-
-  wifiSSID = "";
-  wifiPasswd = "";
  
   Serial.begin(115200);
 
@@ -24,19 +20,27 @@ void setup() {
   Serial.println("AP starting");
   WiFi.softAP(ssid, password);
 
-  server.begin();
+  
+  while ( status != WL_CONNECTED) { 
+    Serial.print("Attempting to connect to WPA SSID: ");
+      status = WiFi.begin("Red_Baron", "BioContro1");
+      delay(10000);
+      Serial.println(status);
+  }
+  //server.begin();
 }
  
 void loop() {
- 
+ Serial.println(status);
 
-   if (wifiSSID == "" || wifiPasswd == "") {
+ delay(1000);
+   if (wifiSSID == NULL || wifiPasswd == NULL) {
       handleSetupWizard();
-   } else if (status != WL_CONNECTED){
+   } else {
       Serial.println("Connect wifi!");
       
       server.close();
-      WiFi.softAPdisconnect(true);
+      WiFi.softAPdisconnect();
       
       while ( status != WL_CONNECTED) { 
         Serial.print("Attempting to connect to WPA SSID: ");
@@ -50,16 +54,12 @@ void loop() {
         wifiConnectCount++;
         if (wifiConnectCount >= 3) {
           wifiConnectCount = 0;
-          wifiPasswd = "";   // Reset password
+          wifiPasswd = NULL;   // Reset password
         }
         delay(10000);
-      }
-    } else {
-      Serial.println("ESP32 Connected");
-      //WiFi.localIP();   //ToDo: Make conditional for Wifi status check
-      delay(1000);
+        Serial.println(status)
     }
- 
+   }
 }
 
 void handleSetupWizard () {
