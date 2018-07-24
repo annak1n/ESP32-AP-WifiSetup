@@ -6,9 +6,7 @@ const char *password = "testpassword";
 
 String wifiSSID;
 String wifiPasswd;
-  
 
-int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 
 void setup() {
