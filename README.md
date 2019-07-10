@@ -1,3 +1,7 @@
+# Experiment project for Wifi settings
+
+Use [WifiManager](https://github.com/tzapu/WiFiManager) project if you need a proper library
+
 # ESP32 AP WifiSetup
 
 
